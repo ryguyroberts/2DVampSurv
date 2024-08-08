@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8i3vpv63p15j"]
+[gd_scene load_steps=5 format=3 uid="uid://b8i3vpv63p15j"]
 
+[ext_resource type="Script" path="res://survivors_game.gd" id="1_74nmq"]
 [ext_resource type="PackedScene" uid="uid://wjdg3bls4koy" path="res://player.tscn" id="1_tl31v"]
 [ext_resource type="PackedScene" uid="uid://c3808mswxcn78" path="res://pine_tree.tscn" id="2_hpjnk"]
-[ext_resource type="PackedScene" uid="uid://br57aet02ivqj" path="res://mob.tscn" id="3_6argk"]
+
+[sub_resource type="Curve2D" id="Curve2D_6ouhb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -103, -159, 0, 0, 0, 0, 2022, -171, 0, 0, 0, 0, 2013, 1189, 0, 0, 0, 0, -100, 1186, 0, 0, 0, 0, -103, -159)
+}
+point_count = 5
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(-3, 0)
+script = ExtResource("1_74nmq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -30
@@ -18,20 +25,6 @@ offset_bottom = 1076.0
 
 [node name="Player" parent="." instance=ExtResource("1_tl31v")]
 position = Vector2(944, 503)
-
-[node name="Mobs" type="Node" parent="."]
-
-[node name="Mob" parent="Mobs" instance=ExtResource("3_6argk")]
-position = Vector2(719, 213)
-
-[node name="Mob2" parent="Mobs" instance=ExtResource("3_6argk")]
-position = Vector2(720, 441)
-
-[node name="Mob3" parent="Mobs" instance=ExtResource("3_6argk")]
-position = Vector2(968, 876)
-
-[node name="Mob4" parent="Mobs" instance=ExtResource("3_6argk")]
-position = Vector2(1255, 542)
 
 [node name="PineTrees" type="Node" parent="."]
 
@@ -55,3 +48,11 @@ position = Vector2(1530, 701)
 
 [node name="PineTree7" parent="PineTrees" instance=ExtResource("2_hpjnk")]
 position = Vector2(1221, 835)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6ouhb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(-103, -159)
+rotation = -0.005647
